@@ -64,11 +64,12 @@ radiusy = (savey - midpointy)
 #origin =
 #radius = math.sqrt((radiusx * radiusx) + (radiusy * radiusy))
 radius = (savex - savexcircle)
-for u in range(savexcircle, savex):
+for u in range(savexcircle, (savex +1 )):
     #y^2-2ky-zconstant=0
     #(u-midpointx)^2 + (y-midpointy)^2 = radius^2
     ycirclenum = float(math.sqrt(abs((radius * radius) - ((u - savexcircle) * (u - savexcircle)))) + savey)
     turtle.goto(float(u), float(ycirclenum))
+turtle.goto(savex, savey)
 turtle.penup()
 turtle.goto(0, -abs(ballradius))
 turtle.pendown()
