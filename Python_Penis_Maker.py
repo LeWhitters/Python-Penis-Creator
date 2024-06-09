@@ -1,12 +1,36 @@
 import turtle
 import math
-import tkinter
+from tkinter import *
 from tkinter.simpledialog import askinteger
+from tkinter.simpledialog import askstring
 
 girth = askinteger("Input", "What girth would you like?")
 length = askinteger("Input", "What length would you like?")
 ballradius = askinteger("Input", "What size balls would you like?")
-
+penwidth = askinteger("Input", "What width pen would you like (max 5)")
+if penwidth > 5:
+    root = Tk()
+    text = Text(root)
+    text.insert(INSERT, "Invalid pen width maximum is 5!")
+    text.pack()
+    root.mainloop()
+    exit()
+color = askstring("Input", "What colour penis would you like? (Pink, Black or Blue)")
+if color.lower() == 'black':
+    turtle.color('#000000')
+elif color.lower() == 'pink':
+    turtle.color('#fe0099')
+elif color.lower() == 'blue':
+    turtle.color('#1d3ffe')
+else:
+    root = Tk()
+    text = Text(root)
+    text.insert(INSERT, "Invalid colour type (can only be: pink, black or blue!)")
+    text.pack()
+    root.mainloop()
+    exit()
+turtle.pensize(penwidth)
+turtle.title("Penis Drawer 2000")
 for x in range(1, int(length)):
     turtle.goto((x),(0.01*(x * x)))
 savex = turtle.xcor()
