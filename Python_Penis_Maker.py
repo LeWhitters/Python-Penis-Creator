@@ -4,12 +4,14 @@ from tkinter import *
 from tkinter.simpledialog import askinteger
 from tkinter.simpledialog import askstring
 from tkinter.simpledialog import askfloat
+from tkinter.colorchooser import askcolor
 
 girth = askinteger("Input", "What girth would you like?")
 length = askinteger("Input", "What length would you like?")
 curve = askfloat("Input", "How steep of a curve would you like? (the higher the number the steeper the curver, 1 = default, MAX = 10, MIN = 0.1")
 ballradius = askinteger("Input", "What size balls would you like?")
 penwidth = askinteger("Input", "What width pen would you like (max 5)")
+color = askcolor()
 if penwidth > 5:
     root = Tk()
     text = Text(root)
@@ -17,20 +19,27 @@ if penwidth > 5:
     text.pack()
     root.mainloop()
     exit()
-color = askstring("Input", "What colour penis would you like? (Pink, Black or Blue)")
-if color.lower() == 'black':
-    turtle.color('#000000')
-elif color.lower() == 'pink':
-    turtle.color('#fe0099')
-elif color.lower() == 'blue':
-    turtle.color('#1d3ffe')
-else:
-    root = Tk()
-    text = Text(root)
-    text.insert(INSERT, "Invalid colour type (can only be: pink, black or blue!)")
-    text.pack()
-    root.mainloop()
-    exit()
+charcount = len(str(color))
+if charcount == 24:
+    colorhex = str(color)[15:22]
+
+elif charcount == 25:
+    colorhex = str(color)[16:23]
+
+elif charcount == 26:
+    colorhex = str(color)[17:24]
+
+elif charcount == 27:
+    colorhex = str(color)[18:25]
+
+elif charcount == 28:
+    colorhex = str(color)[19:26]
+
+elif charcount == 23:
+    colorhex = str(color)[14:21]
+
+elif charcount == 22:
+    colorhex = str(color)[13:20]
 if curve > 10 or curve < 0.1:
     root = Tk()
     text = Text(root)
@@ -38,9 +47,10 @@ if curve > 10 or curve < 0.1:
     text.pack()
     root.mainloop()
     exit()
-
+turtle.color(colorhex)
 turtle.pensize(penwidth)
 turtle.title("Penis Drawer 2000")
+
 for x in range(1, int(length)):
     turtle.goto((x),((curve * 0.01)*(x * x)))
 savex = turtle.xcor()
@@ -82,6 +92,7 @@ turtle.pendown()
 turtle.circle(int(ballradius))
 turtle.hideturtle()
 print("Penis is complete!")
+
 
 
 
